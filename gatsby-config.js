@@ -1,3 +1,6 @@
+
+const apiSourcesBaseUrl = 'http://demo.terotero.it/api/';
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -5,6 +8,7 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    `gatsby-plugin-netlify-cache`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -25,6 +29,42 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: 'gatsby-source-custom-api',
+      options: {
+        url: apiSourcesBaseUrl + 'data/settings/',
+        rootKey: 'setting',
+      },
+    },
+    {
+      resolve: 'gatsby-source-custom-api',
+      options: {
+        url: apiSourcesBaseUrl + 'data/labels/',
+        rootKey: 'label',
+      },
+    },
+    {
+      resolve: 'gatsby-source-custom-api',
+      options: {
+        url: apiSourcesBaseUrl + 'data/menu_groups/',
+        rootKey: 'menu_group',
+      },
+    },
+    {
+      resolve: 'gatsby-source-custom-api',
+      options: {
+        url: apiSourcesBaseUrl + 'data/languages/',
+        rootKey: 'language',
+      },
+    },
+    {
+      resolve: 'gatsby-source-custom-api',
+      options: {
+        url: apiSourcesBaseUrl + 'data/pages/',
+        rootKey: 'page',
+        imageKeys: '[immagine]'
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
